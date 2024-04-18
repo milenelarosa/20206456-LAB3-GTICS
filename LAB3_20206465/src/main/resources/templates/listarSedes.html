@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Sedes</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/fontawesome-all.min.css}">
+    <style>
+        .contenedor2{
+            display: flex;
+            justify-content: center;
+            background-color: #72bb76;
+            padding: 20px;
+        }
+
+        .btn-1{
+            background-color: #dda20a;
+            border-radius: 5px;
+            border: 10px;
+            padding: 10px;
+            color: black;
+            margin-right: 20px;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body style="margin-left: 20px; margin-right: 20px; background-color: #171a1d">
+<div class="contenedor2">
+    <a class="btn btn-success" style="margin-left: 20px; margin-right: 20px" th:href="@{'/sede/listarSedes'}">SEDES</a>
+    <a class="btn btn-success" style="margin-left: 20px; margin-right: 20px" th:href="@{'/veterinarios/listarVeterinarios'}">VERTERINARIOS</a>
+    <a class="btn btn-success" style="margin-left: 20px; margin-right: 20px" th:href="@{'/mascotas/listarMascotas'}">MASCOTAS</a>
+</div>
+<hr>
+<br>
+<h1 style="text-align: center; color: #ffffff; font-family: 'Britannic Bold',serif"> LISTA DE SEDES</h1>
+<br>
+<a class="btn btn-primary mt-4 mb-4" style="margin-left: 20px" th:href="@{'new'}">Nuevo Concierto</a>
+<table class="table table-sm" style="background-color: #ffffff; ">
+    <tr style="background-color: #ed969e">
+        <th style="text-align: center; background-color: #ed969e">#</th>
+        <th style="text-align: center; background-color: #ed969e">Sedes</th>
+        <th style="text-align: center; background-color: #ed969e">Veterinarios</th>
+        <th style="text-align: center; background-color: #ed969e">Mascotas</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each="sede, info : ${listaSede}">
+        <td style="text-align: center; background-color: #ed969e" th:text="${info.index + 1}"></td>
+        <td style="text-align: center" th:text="${sede.nombresede}"></td>
+        <td style="text-align: center">
+            <a th:href="@{'/veterinarios/listarVeterinarios' + '?id=' + ${sede.idsede}}">
+                Mostrar veterinarios
+            </a>
+        </td>
+        <td style="text-align: center">
+            <a th:href="@{'/mascotas/listarMascotas' + '?id=' + ${sede.idsede}}">
+                Mostrar veterinarios
+            </a>
+
+            <form method="post" th:action="@{/veterinarios/buscarVeterinarioPorSede}">
+                <div class="input-group mb-3">
+                    <button class="btn btn-primary" type="submit"></button>
+                </div>
+            </form>
+
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

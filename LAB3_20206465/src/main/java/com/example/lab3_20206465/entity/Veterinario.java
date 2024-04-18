@@ -1,4 +1,4 @@
-package com.example.lab3_20206465.controller;
+package com.example.lab3_20206465.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
